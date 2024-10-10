@@ -4,13 +4,11 @@ import (
 	"fmt"
 	"os"
 	"time"
-
-	"github.com/robbiet480/go.wakatime"
 )
 
 // This example gets the durations for the authenticated user.
 func ExampleWakaTime_GetDurations() {
-	client := wakatime.NewWakaTime(os.Getenv("WAKATIME_API_KEY"))
+	client := wakatime.NewWakaTime(os.Getenv("WAKATIME_API_KEY"), "https://wakatime.com/api/v1/")
 	yesterday := time.Now().AddDate(0, 0, -1)
 	response, err := client.GetDurations(&wakatime.DurationParameters{Date: &yesterday})
 	if err != nil {
@@ -21,7 +19,7 @@ func ExampleWakaTime_GetDurations() {
 
 // This example gets the heartbeats for the authenticated user.
 func ExampleWakaTime_GetHeartbeats() {
-	client := wakatime.NewWakaTime(os.Getenv("WAKATIME_API_KEY"))
+	client := wakatime.NewWakaTime(os.Getenv("WAKATIME_API_KEY"), "https://wakatime.com/api/v1/")
 	yesterday := time.Now().AddDate(0, 0, -1)
 	response, err := client.GetHeartbeats(&wakatime.HeartbeatParameters{
 		Date: &yesterday,
@@ -35,7 +33,7 @@ func ExampleWakaTime_GetHeartbeats() {
 
 // This example gets the leaders for the authenticated user.
 func ExampleWakaTime_GetLeaders() {
-	client := wakatime.NewWakaTime(os.Getenv("WAKATIME_API_KEY"))
+	client := wakatime.NewWakaTime(os.Getenv("WAKATIME_API_KEY"), "https://wakatime.com/api/v1/")
 	response, err := client.GetLeaders("")
 	if err != nil {
 		panic(err)
@@ -45,7 +43,7 @@ func ExampleWakaTime_GetLeaders() {
 
 // This example gets the stats for the authenticated user.
 func ExampleWakaTime_GetStats() {
-	client := wakatime.NewWakaTime(os.Getenv("WAKATIME_API_KEY"))
+	client := wakatime.NewWakaTime(os.Getenv("WAKATIME_API_KEY"), "https://wakatime.com/api/v1/")
 	response, err := client.GetStats(&wakatime.StatsParameters{})
 	if err != nil {
 		panic(err)
@@ -55,7 +53,7 @@ func ExampleWakaTime_GetStats() {
 
 // This example gets the summaries for the authenticated user.
 func ExampleWakaTime_GetSummaries() {
-	client := wakatime.NewWakaTime(os.Getenv("WAKATIME_API_KEY"))
+	client := wakatime.NewWakaTime(os.Getenv("WAKATIME_API_KEY"), "https://wakatime.com/api/v1/")
 	now := time.Now()
 	yesterday := time.Now().AddDate(0, 0, -1)
 	response, err := client.GetSummaries(&wakatime.SummaryParameters{
@@ -70,7 +68,7 @@ func ExampleWakaTime_GetSummaries() {
 
 // This example gets the user for the authenticated user.
 func ExampleWakaTime_GetUser() {
-	client := wakatime.NewWakaTime(os.Getenv("WAKATIME_API_KEY"))
+	client := wakatime.NewWakaTime(os.Getenv("WAKATIME_API_KEY"), "https://wakatime.com/api/v1/")
 	response, err := client.GetUser("")
 	if err != nil {
 		panic(err)
@@ -80,7 +78,7 @@ func ExampleWakaTime_GetUser() {
 
 // This example gets the userAgents for the authenticated user.
 func ExampleWakaTime_GetUserAgents() {
-	client := wakatime.NewWakaTime(os.Getenv("WAKATIME_API_KEY"))
+	client := wakatime.NewWakaTime(os.Getenv("WAKATIME_API_KEY"), "https://wakatime.com/api/v1/")
 	response, err := client.GetUserAgents("")
 	if err != nil {
 		panic(err)

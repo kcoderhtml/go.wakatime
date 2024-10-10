@@ -21,7 +21,8 @@ const APIBaseURL = "https://wakatime.com/api/v1/"
 
 // The WakaTime struct, containing the APIKey.
 type WakaTime struct {
-	APIKey string
+	APIKey     string
+	APIBaseURL string
 }
 
 // Response is a response from WakaTime.
@@ -54,9 +55,10 @@ func decodeResponse(r io.Reader, want interface{}) error {
 var httpClient = &http.Client{}
 
 // NewWakaTime returns a WakaTime struct with the key filled in
-func NewWakaTime(key string) *WakaTime {
+func NewWakaTime(key string, url string) *WakaTime {
 	return &WakaTime{
-		APIKey: key,
+		APIKey:     key,
+		APIBaseURL: url,
 	}
 }
 
@@ -65,7 +67,7 @@ func (w *WakaTime) getURL(url string, decode bool, result interface{}) error {
 	if w.APIKey == "" {
 		return errors.New("No API key provided!")
 	}
-	fullURL := fmt.Sprintf("%s%s", APIBaseURL, url)
+	fullURL := fmt.Sprintf("%s%s", w.APIBaseURL, url)
 	req, err := http.NewRequest("GET", fullURL, nil)
 	b64edKey := base64.StdEncoding.EncodeToString([]byte(w.APIKey))
 	req.Header.Add("Authorization", fmt.Sprintf("Basic %s", b64edKey))
