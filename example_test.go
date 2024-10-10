@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"os"
 	"time"
+
+	wakatime "github.com/kcoderhtml/go.wakatime"
 )
 
 // This example gets the durations for the authenticated user.
