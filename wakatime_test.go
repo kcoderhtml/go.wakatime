@@ -8,6 +8,7 @@ import (
 )
 
 var WakaTimeAPIKey = os.Getenv("WAKATIME_API_KEY")
+var WakaTimeAPIURL = "https://wakatime.com/api/v1/"
 
 func TestMain(m *testing.M) {
 	if WakaTimeAPIKey == "" {
@@ -19,7 +20,7 @@ func TestMain(m *testing.M) {
 }
 
 func TestGetDurations(t *testing.T) {
-	client := NewWakaTime(WakaTimeAPIKey)
+	client := NewWakaTime(WakaTimeAPIKey, WakaTimeAPIURL)
 	yesterday := time.Now().AddDate(0, 0, -1)
 	response, err := client.GetDurations(&DurationParameters{Date: &yesterday})
 	if err != nil {
@@ -29,7 +30,7 @@ func TestGetDurations(t *testing.T) {
 }
 
 func TestGetHeartbeats(t *testing.T) {
-	client := NewWakaTime(WakaTimeAPIKey)
+	client := NewWakaTime(WakaTimeAPIKey, WakaTimeAPIURL)
 	yesterday := time.Now().AddDate(0, 0, -1)
 	response, err := client.GetHeartbeats(&HeartbeatParameters{
 		Date: &yesterday,
@@ -42,7 +43,7 @@ func TestGetHeartbeats(t *testing.T) {
 }
 
 func TestGetLeaders(t *testing.T) {
-	client := NewWakaTime(WakaTimeAPIKey)
+	client := NewWakaTime(WakaTimeAPIKey, WakaTimeAPIURL)
 	response, err := client.GetLeaders("")
 	if err != nil {
 		t.Fatal(err)
@@ -51,7 +52,7 @@ func TestGetLeaders(t *testing.T) {
 }
 
 func TestGetStats(t *testing.T) {
-	client := NewWakaTime(WakaTimeAPIKey)
+	client := NewWakaTime(WakaTimeAPIKey, WakaTimeAPIURL)
 	response, err := client.GetStats(&StatsParameters{})
 	if err != nil {
 		t.Fatal(err)
@@ -60,7 +61,7 @@ func TestGetStats(t *testing.T) {
 }
 
 func TestGetSummaries(t *testing.T) {
-	client := NewWakaTime(WakaTimeAPIKey)
+	client := NewWakaTime(WakaTimeAPIKey, WakaTimeAPIURL)
 	now := time.Now()
 	yesterday := time.Now().AddDate(0, 0, -1)
 	response, err := client.GetSummaries(&SummaryParameters{
@@ -74,7 +75,7 @@ func TestGetSummaries(t *testing.T) {
 }
 
 func TestGetUser(t *testing.T) {
-	client := NewWakaTime(WakaTimeAPIKey)
+	client := NewWakaTime(WakaTimeAPIKey, WakaTimeAPIURL)
 	response, err := client.GetUser("")
 	if err != nil {
 		t.Fatal(err)
@@ -83,7 +84,7 @@ func TestGetUser(t *testing.T) {
 }
 
 func TestGetUserAgents(t *testing.T) {
-	client := NewWakaTime(WakaTimeAPIKey)
+	client := NewWakaTime(WakaTimeAPIKey, WakaTimeAPIURL)
 	response, err := client.GetUserAgents("")
 	if err != nil {
 		t.Fatal(err)
