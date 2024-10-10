@@ -68,7 +68,7 @@ func (w *WakaTime) getURL(url string, decode bool, result interface{}) error {
 		return errors.New("no api key provided")
 	}
 	fullURL := fmt.Sprintf("%s%s", w.APIBaseURL, url)
-	req, err := http.NewRequest("GET", fullURL, nil)
+	req, _ := http.NewRequest("GET", fullURL, nil)
 	b64edKey := base64.StdEncoding.EncodeToString([]byte(w.APIKey))
 	req.Header.Add("Authorization", fmt.Sprintf("Basic %s", b64edKey))
 	req.Header.Add("User-Agent", "go.wakatime")
